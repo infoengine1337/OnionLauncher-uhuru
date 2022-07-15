@@ -44,12 +44,10 @@ class MainWindow(QMainWindow):
 
 		modList = [
 
-			self.CheckIsUseBridge,
 			self.RadioUseBuiltin,
 			self.RadioUseCustom,
 			self.EditorOfBridge,
 
-			self.CheckIsUseProxy,
 			self.EditorOfProxy
 
 		]
