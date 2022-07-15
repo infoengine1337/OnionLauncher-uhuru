@@ -12,14 +12,14 @@ def startTor(parent, config_dict):
 		if os.path.exists(torrc_path) and os.path.isfile(torrc_path):
 				
 			with open(torrc_path, "r") as f:
-				torrc_textlist = f.readlines()
+				torrc_textlist = f.read().splitlines()
 
 			mod_torrc_textlist = [tmp for tmp in torrc_textlist if all(map(lambda x: not tmp.startswith(x) , eliminated_directive))]
 
 			mod_torrc_textlist += (config_dict["bridges_list"] + config_dict["proxies_list"])
 
 			with open(torrc_path, "w") as f:
-				f.writelines(mod_torrc_textlist)
+				f.write("\n".join(mod_torrc_textlist))
 
 			command = "systemctl start tor"
 			os.system(command)
