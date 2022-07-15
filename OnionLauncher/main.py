@@ -116,7 +116,8 @@ class MainWindow(QMainWindow):
 		if self.CheckIsUseBridge.isChecked():
 			proxies_list = self.EditorOfProxy.toPlainText().split("\n")
 
-		output_dict.update[("bridges_list", bridges_list), ("proxies_list", proxies_list)]
+		output_dict["bridges_list"] =  bridges_list
+		output_dict["proxies_list"] =  proxies_list
 		
 		return output_dict
 
