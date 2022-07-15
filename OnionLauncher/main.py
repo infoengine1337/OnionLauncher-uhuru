@@ -34,12 +34,13 @@ class MainWindow(QMainWindow):
 		switchtarget = {
 			self.CheckIsUseBridge: self.useBridge,
 			self.CheckIsUseProxy: self.useProxy,
-			self.RadioUseBuiltin: self.visibleeditor
 
 		}
 
 		self.evAddClick(buttons)
 		self.evSwitchCheck(switchtarget)
+
+		self.onClicked.connect({self.RadioUseBuiltin: self.visibleeditor})
 
 		modList = [
 
