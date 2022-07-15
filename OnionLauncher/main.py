@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
 		self.evAddClick(buttons)
 		self.evSwitchCheck(switchtarget)
 
-		self.onClicked.connect({self.RadioUseBuiltin: self.visibleeditor})
+		self.RadioUseBuiltin.toggled.connect(self.visibleeditor)
 
 		modList = [
 
@@ -87,9 +87,9 @@ class MainWindow(QMainWindow):
 
 	def visibleeditor(self, state):
 		if self.RadioUseBuiltin.isChecked():
-			self.EditorOfBridge.setEnabled(True)
-		else:
 			self.EditorOfBridge.setEnabled(False)
+		else:
+			self.EditorOfBridge.setEnabled(True)
 
 	def useProxy(self, state):
 		if self.CheckIsUseProxy.isChecked():
