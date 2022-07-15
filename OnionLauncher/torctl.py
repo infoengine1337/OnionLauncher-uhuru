@@ -7,6 +7,7 @@ def startTor(parent, config_dict):
 
 	eliminated_directive = ["UseBridges", "ClientTransportPlugin", "ClientTransportPlugin", "bridge", "Bridge", "HTTPSProxy", "HTTPSProxyAuthenticator", "Socks4Proxy", "Socks5Proxy", "Socks5ProxyUsername", "Socks5ProxyPassword"]
 
+	print(config_dict)
 	try:
 
 		if os.path.exists(torrc_path) and os.path.isfile(torrc_path):

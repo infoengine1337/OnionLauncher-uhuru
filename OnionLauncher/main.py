@@ -143,7 +143,7 @@ class MainWindow(QMainWindow):
 				bridges_list.extend(self.EditorOfBridge.toPlainText().split("\n"))
 
 		else:
-			bridges_list.extend(["UseBridges 0"])
+			bridges_list.append("UseBridges 0")
 
 			
 		if self.CheckIsUseBridge.isChecked():
@@ -152,6 +152,7 @@ class MainWindow(QMainWindow):
 		output_dict["bridges_list"] =  bridges_list
 		output_dict["proxies_list"] =  proxies_list
 		
+		print(output_dict)
 		return output_dict
 
 
