@@ -20,7 +20,6 @@ control_socket_path = '/run/tor/control'
 
 
 class MainWindow(QMainWindow):
-	TrueList = []
 
 	def __init__(self, *args):
 		super(MainWindow, self).__init__(*args)
@@ -160,6 +159,8 @@ class MainWindow(QMainWindow):
 
 
 	def switchTor(self): # Enable (or Disable) Tor
+
+		global TrueList
 		
 		modList = [
 
@@ -222,7 +223,7 @@ class MainWindow(QMainWindow):
 			for i in modList:
 				if i.isEnabled():
 					TrueList.append(i)
-					
+			
 			self.evSetListEnabled(modList, False)
 			QApplication.processEvents()
 
@@ -275,4 +276,5 @@ def main_loop():
 	sys.exit(app.exec_())
 
 if __name__ == "__main__":
+	TrueList = []
 	main_loop()
