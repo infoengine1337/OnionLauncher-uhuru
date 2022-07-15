@@ -31,13 +31,33 @@ class MainWindow(QMainWindow):
 		}
 
 		# Define Checkbox
-		checkboxes = {
-			self.CheckIsUseBridge: self.useBridge
+		switchtarget = {
+			self.CheckIsUseBridge: self.useBridge,
+			self.CheckIsUseProxy: self.useProxy,
+			self.RadioUseBuiltin: self.visibleeditor
 
 		}
 
 		self.evAddClick(buttons)
-		self.evSwitchCheck(checkboxes)
+		self.evSwitchCheck(switchtarget)
+
+		modList = [
+
+			self.CheckIsUseBridge,
+			self.RadioUseBuiltin,
+			self.RadioUseCustom,
+			self.EditorOfBridge,
+
+			self.CheckIsUseProxy,
+			self.EditorOfProxy
+
+		]
+
+		self.evSetListEnabled(modList, False)
+
+
+
+
 
 	# Function to connect objects from dictionary
 	def evAddClick(self, obj_dict):
@@ -58,9 +78,23 @@ class MainWindow(QMainWindow):
 		if self.CheckIsUseBridge.isChecked():
 			self.RadioUseBuiltin.setEnabled(True)
 			self.RadioUseCustom.setEnabled(True)
+			
 		else:
 			self.RadioUseBuiltin.setEnabled(False)
 			self.RadioUseCustom.setEnabled(False)
+			
+
+	def visibleeditor(self, state):
+		if self.RadioUseBuiltin.isChecked():
+			self.EditorOfBridge.setEnabled(True)
+		else:
+			self.EditorOfBridge.setEnabled(False)
+
+	def useProxy(self, state):
+		if self.CheckIsUseProxy.isChecked():
+			self.EditorOfProxy.setEnabled(True)
+		else:
+			self.EditorOfProxy.setEnabled(False)
 
 
 	# Function to add a blank row
