@@ -24,6 +24,7 @@ class MainWindow(QMainWindow):
 	def __init__(self, *args):
 		super(MainWindow, self).__init__(*args)
 
+        self.Truelist = []
 		# Load .ui file
 		loadUi(detect_filename("ui_files/main.ui"), self)
 
@@ -160,7 +161,6 @@ class MainWindow(QMainWindow):
 
 	def switchTor(self): # Enable (or Disable) Tor
 
-		global TrueList
 		
 		modList = [
 
@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
 
 			
 
-			self.evSetListEnabled(TrueList, True)
+			self.evSetListEnabled(self.TrueList, True)
 			torctl.stopTor()
 			QApplication.processEvents()
 
@@ -219,10 +219,10 @@ class MainWindow(QMainWindow):
 			self.btnSwitchTor.setText("Stop Tor")
 			self.lblSwitchTor.setText("Tor Running")
 
-			TrueList = []
+			self.TrueList = []
 			for i in modList:
 				if i.isEnabled():
-					TrueList.append(i)
+					self.TrueList.append(i)
 			
 			self.evSetListEnabled(modList, False)
 			QApplication.processEvents()
