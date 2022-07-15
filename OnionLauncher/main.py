@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
 			bridges_list.append("UseBridges 0")
 
 			
-		if self.CheckIsUseBridge.isChecked():
+		if self.CheckIsUseProxy.isChecked():
 			proxies_list = self.EditorOfProxy.toPlainText().splitlines()
 
 		output_dict["bridges_list"] =  bridges_list
