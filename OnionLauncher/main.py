@@ -216,7 +216,7 @@ class MainWindow(QMainWindow):
 			count=0
 
 			sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-			while not sock.connect_ex(("127.0.0.1", 9051)) and counter <= 20:
+			while not sock.connect_ex(("127.0.0.1", 9051)) and count <= 20:
 				time.sleep(0.1)
 				count += 1
 
