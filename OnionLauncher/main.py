@@ -231,11 +231,11 @@ class MainWindow(QMainWindow):
 				if bootstrap_status != previous_status:
 					bootstrap_percent = int(re.match('.* PROGRESS=([0-9]+).*', bootstrap_status).group(1))
 					bootstrap_tag = re.search(r'TAG=(.*) +SUMMARY', bootstrap_status).group(1)
-					self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_phase))
 
 					if bootstrap_tag in tag_phase:
 						bootstrap_phase = tag_phase[bootstrap_tag]
 
+					self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_phase))
 					previous_status = bootstrap_status
 				
 				self.TorProgress.setValue(bootstrap_percent)
