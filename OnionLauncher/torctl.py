@@ -27,8 +27,8 @@ def startTor(parent, config_dict):
 		else:
 			QMessageBox.critical(parent, "Error", "torrc file does not exist.")
 
-	except: # Output error if one is encountered
-		QMessageBox.critical(parent, "Error", "an error happened.")
+	except Exception as e: # Output error if one is encountered
+		QMessageBox.critical(parent, "Error", "an error happened {}.".format(e))
 
 
 def stopTor():
