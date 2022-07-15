@@ -20,6 +20,8 @@ control_socket_path = '/run/tor/control'
 
 
 class MainWindow(QMainWindow):
+	TrueList = []
+
 	def __init__(self, *args):
 		super(MainWindow, self).__init__(*args)
 
@@ -171,6 +173,7 @@ class MainWindow(QMainWindow):
 
 		]
 
+
 		tag_phase = {'starting': 'Starting',
                     'conn': 'Connecting to a relay',
                     'conn_dir': 'Connecting to a relay directory',
@@ -201,15 +204,25 @@ class MainWindow(QMainWindow):
 			values["torEnabled"] = False
 			self.btnSwitchTor.setText("Start Tor")
 			self.lblSwitchTor.setText("Tor Not Running")
-			self.evSetListEnabled(modList, True)
+
+			
+
+			self.evSetListEnabled(TrueList, True)
 			torctl.stopTor()
 			QApplication.processEvents()
+
 		else: # Turn on Tor
 			torctl.startTor(self, self.optToDict())
 			# If Tor started correctly, then mark as "on"
 			values["torEnabled"] = True
 			self.btnSwitchTor.setText("Stop Tor")
 			self.lblSwitchTor.setText("Tor Running")
+
+			TrueList = []
+			for i in modList:
+				if i.isEnabled():
+					TrueList.append(i)
+					
 			self.evSetListEnabled(modList, False)
 			QApplication.processEvents()
 
