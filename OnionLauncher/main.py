@@ -217,6 +217,7 @@ class MainWindow(QMainWindow):
 				time.sleep(0.2)
 
 			tor_controller = stem.control.Controller.from_port()
+			tor_controller.authenticate(control_cookie_path)
 
 			previous_status = ""
 			bootstrap_percent = 0
