@@ -135,12 +135,12 @@ class MainWindow(QMainWindow):
 
 		if self.CheckIsUseBridge.isChecked():
 
-			bridges_list.extend(["UseBridges 1","ClientTransportPlugin obfs2,obfs3 exec /usr/bin/obfsproxy managed","ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed"])
+			bridges_list += ["UseBridges 1","ClientTransportPlugin obfs2,obfs3 exec /usr/bin/obfsproxy managed","ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed"]
 
 			if self.RadioUseBuiltin.isChecked():
-				bridges_list.extend(builtin_torbridges_list)
+				bridges_list += builtin_torbridges_list
 			else:
-				bridges_list.extend(self.EditorOfBridge.toPlainText().split("\n"))
+				bridges_list += self.EditorOfBridge.toPlainText().split("\n")
 
 		else:
 			bridges_list.append("UseBridges 0")
@@ -152,7 +152,6 @@ class MainWindow(QMainWindow):
 		output_dict["bridges_list"] =  bridges_list
 		output_dict["proxies_list"] =  proxies_list
 		
-		print(output_dict)
 		return output_dict
 
 

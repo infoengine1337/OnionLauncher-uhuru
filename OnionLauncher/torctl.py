@@ -7,7 +7,6 @@ def startTor(parent, config_dict):
 
 	eliminated_directive = ["UseBridges", "ClientTransportPlugin", "ClientTransportPlugin", "bridge", "Bridge", "HTTPSProxy", "HTTPSProxyAuthenticator", "Socks4Proxy", "Socks5Proxy", "Socks5ProxyUsername", "Socks5ProxyPassword"]
 
-	print(config_dict)
 	try:
 
 		if os.path.exists(torrc_path) and os.path.isfile(torrc_path):
@@ -17,7 +16,7 @@ def startTor(parent, config_dict):
 
 			mod_torrc_textlist = [tmp for tmp in torrc_textlist if all(map(lambda x: not tmp.startswith(x) , eliminated_directive))]
 
-			mod_torrc_textlist.extend(config_dict["bridges_list"]).extend(config_dict["proxies_list"])
+			mod_torrc_textlist += (config_dict["bridges_list"] + config_dict["proxies_list"])
 
 			with open(torrc_path, "w") as f:
 				f.writelines(mod_torrc_textlist)
