@@ -140,14 +140,14 @@ class MainWindow(QMainWindow):
 			if self.RadioUseBuiltin.isChecked():
 				bridges_list += builtin_torbridges_list
 			else:
-				bridges_list += self.EditorOfBridge.toPlainText().split("\n")
+				bridges_list += self.EditorOfBridge.toPlainText().splitlines()
 
 		else:
 			bridges_list.append("UseBridges 0")
 
 			
 		if self.CheckIsUseBridge.isChecked():
-			proxies_list = self.EditorOfProxy.toPlainText().split("\n")
+			proxies_list = self.EditorOfProxy.toPlainText().splitlines()
 
 		output_dict["bridges_list"] =  bridges_list
 		output_dict["proxies_list"] =  proxies_list
@@ -234,7 +234,7 @@ class MainWindow(QMainWindow):
 					previous_status = bootstrap_status
 				
 				self.TorProgress.setValue(bootstrap_percent)
-				self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_tag))
+				self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_phase))
 
 				QApplication.processEvents()
 				time.sleep(0.2)
