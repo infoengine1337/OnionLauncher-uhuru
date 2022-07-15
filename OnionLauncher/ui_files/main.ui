@@ -107,10 +107,7 @@
              </sizepolicy>
             </property>
             <property name="plainText">
-             <string>#UseBridges 1
-#ClientTransportPlugin obfs2,obfs3 exec /usr/bin/obfsproxy managed
-#ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed
-#bridge 192.168.255.1:443
+             <string>#bridge 192.168.255.1:443
 #bridge 24.22.1.54:443
 #bridge obfs2 209.176.111.47:42105
 #bridge obfs3 199.241.31.96:12873
