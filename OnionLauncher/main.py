@@ -167,6 +167,7 @@ class MainWindow(QMainWindow):
 			self.lblSwitchTor.setText("Tor Not Running")
 			self.evSetListEnabled(modList, True)
 			torctl.stopTor()
+			QApplication.processEvents()
 		else: # Turn on Tor
 			torctl.startTor(self, self.optToDict())
 			# If Tor started correctly, then mark as "on"
@@ -174,6 +175,7 @@ class MainWindow(QMainWindow):
 			self.btnSwitchTor.setText("Stop Tor")
 			self.lblSwitchTor.setText("Tor Running")
 			self.evSetListEnabled(modList, False)
+			QApplication.processEvents()
 
 			count=0
 			while not os.path.exists(control_socket_path) and count < 5:
@@ -183,7 +185,7 @@ class MainWindow(QMainWindow):
 			tor_controller = stem.control.Controller.from_socket_file(control_socket_path)
 			tor_controller.authenticate(control_cookie_path)
 
-
+			previous_status = ""
 			bootstrap_percent = 0
 			while bootstrap_percent < 100:
 				bootstrap_status = tor_controller.get_info("status/bootstrap-phase")
@@ -203,8 +205,6 @@ class MainWindow(QMainWindow):
 				QApplication.processEvents()
 				time.sleep(0.2)
 
-		# Refresh elements
-		QApplication.processEvents()
 
 
 
