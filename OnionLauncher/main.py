@@ -6,6 +6,8 @@ from var import values, version
 import torctl
 from fn_handle import detect_filename
 
+import socket
+
 import stem
 import stem.control
 import stem.socket
@@ -212,6 +214,12 @@ class MainWindow(QMainWindow):
 			QApplication.processEvents()
 
 			count=0
+
+			sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			while not sock.connect_ex(("127.0.0.1", 9051)) and counter <= 20:
+				time.sleep(0.1)
+				counter += 1
+
 			tor_controller = stem.control.Controller.from_port()
 			tor_controller.authenticate(control_cookie_path)
 
