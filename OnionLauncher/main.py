@@ -212,10 +212,6 @@ class MainWindow(QMainWindow):
 			QApplication.processEvents()
 
 			count=0
-			while not os.path.exists(control_socket_path) and count < 5:
-				count += 0.2
-				time.sleep(0.2)
-
 			tor_controller = stem.control.Controller.from_port()
 			tor_controller.authenticate(control_cookie_path)
 
@@ -227,6 +223,7 @@ class MainWindow(QMainWindow):
 				if bootstrap_status != previous_status:
 					bootstrap_percent = int(re.match('.* PROGRESS=([0-9]+).*', bootstrap_status).group(1))
 					bootstrap_tag = re.search(r'TAG=(.*) +SUMMARY', bootstrap_status).group(1)
+					self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_phase))
 
 					if bootstrap_tag in tag_phase:
 						bootstrap_phase = tag_phase[bootstrap_tag]
@@ -234,7 +231,7 @@ class MainWindow(QMainWindow):
 					previous_status = bootstrap_status
 				
 				self.TorProgress.setValue(bootstrap_percent)
-				self.textBrowser.setText(self.textBrowser.toPlainText() + "{}\n".format(bootstrap_phase))
+				
 
 				QApplication.processEvents()
 				time.sleep(0.2)
