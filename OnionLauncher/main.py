@@ -23,8 +23,8 @@ class MainWindow(QMainWindow):
 
 	def __init__(self, *args):
 		super(MainWindow, self).__init__(*args)
-
-        self.Truelist = []
+		
+		self.Truelist = []
 		# Load .ui file
 		loadUi(detect_filename("ui_files/main.ui"), self)
 
@@ -235,8 +235,24 @@ class MainWindow(QMainWindow):
 				time.sleep(0.1)
 				count += 1
 
-			tor_controller = stem.control.Controller.from_port()
-			tor_controller.authenticate(control_cookie_path)
+			try:
+				tor_controller = stem.control.Controller.from_port()
+			except stem.SocketError:
+				QMessageBox.critical(self, "Error", "Construct Tor Controller Failed: unable to establish a connection")
+
+			try:
+				tor_controller.authenticate(control_cookie_path)
+
+			except stem.connection.IncorrectCookieSize:
+				pass  #if # TODO: the cookie file's size is wrong
+			except stem.connection.UnreadableCookieFile:
+				# TODO: can we let Tor generate a cookie to fix this situation?
+				QMessageBox.critical(self, "Error", "we cannot read the cookie file (probably due to permissions)")
+				time.sleep(2)
+			except stem.connection.CookieAuthRejected:
+				pass  #if cookie authentication is attempted but the socket doesn't accept it
+			except stem.connection.IncorrectCookieValue:
+				pass  #if the cookie file's value is rejected
 
 			previous_status = ""
 			bootstrap_percent = 0
