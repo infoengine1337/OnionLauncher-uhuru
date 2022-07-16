@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="../logo.png" alt="Onion Launcher logo">
+    <img src="logo.png" alt="Onion Launcher logo">
 </p>
 <h1 align="center">OnionLauncher-Uhuru</h1>
 <p align="center">
@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/github/repo-size/infoengine1337/OnionLauncher-uhuru?color=red&style=popout">
   <img src="https://img.shields.io/tokei/lines/github/infoengine1337/OnionLauncher-uhuru?color=orange&style=popout">
 
-![OnionLauncher Screenshot](screenshot-uhuru.png)
+![OnionLauncher Screenshot](screenshot_uhuru.png)
 
 This version is modified by @infoengine1337.
 Uhuru OS Loid Edition contains this launcher by default.
