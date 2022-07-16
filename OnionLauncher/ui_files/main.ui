@@ -108,10 +108,10 @@
             </property>
             <property name="plainText">
              <string>#bridge 192.168.255.1:443
-#bridge 24.22.1.54:443
-#bridge obfs2 209.176.111.47:42105
-#bridge obfs3 199.241.31.96:12873
-#bridge obfs4 141.201.27.48:420 gibberish cert=more-gibberish iat-mode=0</string>
+#Bridge 24.22.1.54:443
+#Bridge obfs2 209.176.111.47:42105
+#Bridge obfs3 199.241.31.96:12873
+#Bridge obfs4 141.201.27.48:420 gibberish cert=more-gibberish iat-mode=0</string>
             </property>
             <property name="placeholderText">
              <string>Please Enter your bridges infomation...</string>
