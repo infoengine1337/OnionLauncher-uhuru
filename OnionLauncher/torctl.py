@@ -21,7 +21,7 @@ def startTor(parent, config_dict):
 			with open(torrc_path, "w") as f:
 				f.write("\n".join(mod_torrc_textlist))
 
-			command = "systemctl start tor"
+			command = "systemctl restart tor"
 			os.system(command)
 
 		else:
