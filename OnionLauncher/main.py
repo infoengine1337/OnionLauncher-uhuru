@@ -14,7 +14,7 @@ import stem.socket
 from stem.connection import connect
 
 control_cookie_path = '/var/lib/tor/control.authcookie'
-control_socket_path = '/run/tor/control'
+#control_socket_path = '/run/tor/control'
 
 
 
@@ -24,6 +24,7 @@ class MainWindow(QMainWindow):
 	def __init__(self, *args):
 		super(MainWindow, self).__init__(*args)
 
+        self.Truelist = []
 		# Load .ui file
 		loadUi(detect_filename("ui_files/main.ui"), self)
 
@@ -149,7 +150,7 @@ class MainWindow(QMainWindow):
 			bridges_list.append("UseBridges 0")
 
 			
-		if self.CheckIsUseBridge.isChecked():
+		if self.CheckIsUseProxy.isChecked():
 			proxies_list = self.EditorOfProxy.toPlainText().splitlines()
 
 		output_dict["bridges_list"] =  bridges_list
@@ -160,7 +161,6 @@ class MainWindow(QMainWindow):
 
 	def switchTor(self): # Enable (or Disable) Tor
 
-		global TrueList
 		
 		modList = [
 
@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
 
 			
 
-			self.evSetListEnabled(TrueList, True)
+			self.evSetListEnabled(self.TrueList, True)
 			torctl.stopTor()
 			QApplication.processEvents()
 
@@ -216,13 +216,14 @@ class MainWindow(QMainWindow):
 			torctl.startTor(self, self.optToDict())
 			# If Tor started correctly, then mark as "on"
 			values["torEnabled"] = True
+			self.btnSwitchTor.setEnabled(False)
 			self.btnSwitchTor.setText("Stop Tor")
 			self.lblSwitchTor.setText("Tor Running")
 
-			TrueList = []
+			self.TrueList = []
 			for i in modList:
 				if i.isEnabled():
-					TrueList.append(i)
+					self.TrueList.append(i)
 			
 			self.evSetListEnabled(modList, False)
 			QApplication.processEvents()
@@ -257,6 +258,9 @@ class MainWindow(QMainWindow):
 
 				QApplication.processEvents()
 				time.sleep(0.2)
+			
+			self.btnSwitchTor.setEnabled(True)
+			QApplication.processEvents()
 
 
 
@@ -276,5 +280,4 @@ def main_loop():
 	sys.exit(app.exec_())
 
 if __name__ == "__main__":
-	TrueList = []
 	main_loop()
