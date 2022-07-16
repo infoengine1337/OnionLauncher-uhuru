@@ -14,7 +14,7 @@ import stem.socket
 from stem.connection import connect
 
 control_cookie_path = '/var/lib/tor/control.authcookie'
-control_socket_path = '/run/tor/control'
+#control_socket_path = '/run/tor/control'
 
 
 
@@ -216,6 +216,7 @@ class MainWindow(QMainWindow):
 			torctl.startTor(self, self.optToDict())
 			# If Tor started correctly, then mark as "on"
 			values["torEnabled"] = True
+			self.btnSwitchTor.setEnabled(False)
 			self.btnSwitchTor.setText("Stop Tor")
 			self.lblSwitchTor.setText("Tor Running")
 
@@ -257,6 +258,9 @@ class MainWindow(QMainWindow):
 
 				QApplication.processEvents()
 				time.sleep(0.2)
+			
+			self.btnSwitchTor.setEnabled(True)
+			QApplication.processEvents()
 
 
 
@@ -276,5 +280,4 @@ def main_loop():
 	sys.exit(app.exec_())
 
 if __name__ == "__main__":
-	TrueList = []
 	main_loop()
