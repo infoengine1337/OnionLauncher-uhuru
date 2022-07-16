@@ -286,7 +286,7 @@ class MainWindow(QMainWindow):
 		message = "About OnionLauncher " + version + "\n\n" \
 				"Copyright 2016 Neel Chauhan\n" \
 				"This Version is modified by @infoengine1337\n" \
-				"https://github.com/infoengine1337/OnionLauncher"
+				"https://github.com/infoengine1337/OnionLauncher-uhuru"
 
 		QMessageBox.information(self, "Information", message)
 
