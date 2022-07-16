@@ -80,6 +80,7 @@ class MainWindow(QMainWindow):
 	def useBridge(self, state):
 		if self.CheckIsUseBridge.isChecked():
 			self.RadioUseBuiltin.setEnabled(True)
+			self.RadioUseBuiltin.setChecked(True)
 			self.RadioUseCustom.setEnabled(True)
 			
 		else:
